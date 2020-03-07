@@ -1,0 +1,12 @@
+<div class="user-card-wrapper">
+  <mat-card *ngFor="let user of userList" class="user-card">
+    <mat-card-header>
+      <mat-card-title class="user-card-title">User Card</mat-card-title>
+        <mat-card-subtitle><span class="user-card-info">User Name:</span> {{user.name}}</mat-card-subtitle>
+        <mat-card-subtitle><span class="user-card-info">Email:</span> {{user.email}}</mat-card-subtitle>
+    </mat-card-header>
+    <div class="user-card-btn">
+      <button mat-button color="primary" [routerLink]="user.id.toString()">{{'More Information' | uppercase}}</button>
+    </div>
+  </mat-card>
+</div>

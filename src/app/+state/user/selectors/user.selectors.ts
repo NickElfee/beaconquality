@@ -1,15 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { INTERN_FEATURE_KEY, selectEntities, selectAll, InternState } from '../reducers/intern.reducer';
-import { UserDto } from '@intern/data';
-import { Dictionary } from '@ngrx/entity';
+import { USER_FEATURE_KEY, selectEntities, selectAll, UserState } from '../reducers/user.reducers'
+import { Dictionary } from "@ngrx/entity";
+import { UserDto } from "../../../Interfaces/user.dto";
 
-const selectState = createFeatureSelector<InternState>(INTERN_FEATURE_KEY);
+const selectState = createFeatureSelector<UserState>(USER_FEATURE_KEY);
 const getEntities = createSelector(selectState, selectEntities);
 
-export const getAllInterns = createSelector(selectState, selectAll);
+export const getAllUsers = createSelector(selectState, selectAll);
 
-export const getInternById = (id: string) =>
+export const getUserById = (id: number) =>
   createSelector(getEntities, (entities: Dictionary<UserDto>) => entities[id]);
-
-export const getFirstInternId = () =>
-  createSelector(getAllInterns, (interns: UserDto[]) => interns && !!interns.length && interns[0]);

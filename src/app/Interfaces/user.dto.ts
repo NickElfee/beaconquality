@@ -1,7 +1,8 @@
-import { AddressDto } from "./address.interface";
-import { CompanyDto } from "./company.interface";
+import { AddressDto } from "./address.dto";
+import { CompanyDto } from "./company.dto";
+import { Identifiable } from "./identifiable.dto";
 
-export interface UserDto {
+export interface UserDto extends Identifiable {
   id: number;
   name: string;
   username: string;

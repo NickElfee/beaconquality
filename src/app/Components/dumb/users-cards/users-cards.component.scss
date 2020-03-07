@@ -1,0 +1,15 @@
+.user-card-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .user-card-title {
+    display: flex;
+    justify-content: center;
+  }
+
+  .user-card-btn {
+    font-size: 10px;
+  }
+}

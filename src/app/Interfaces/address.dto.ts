@@ -1,4 +1,4 @@
-import {GeoDto} from "./geo.interface";
+import {GeoDto} from "./geo.dto";
 
 export interface AddressDto {
   street: string,
