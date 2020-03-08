@@ -33,10 +33,6 @@ export class UserService {
     return checkStoreUsers$;
   }
 
-  private getCurrentUser$(id: number): Observable<UserDto> {
-    return this.http.get<UserDto>(`${USER_LIST_URL}/${id}`, {});
-  }
-
   public getUserById$(id: number): Observable<UserDto> {
     const checkStoreUser$ = this.store$.select(getUserById(id));
 
@@ -44,11 +40,13 @@ export class UserService {
       .pipe(
         take(1),
         filter((userData: UserDto) => !userData),
-        switchMapTo(this.getCurrentUser$(id)),
-      ).subscribe(
-        (userData: UserDto) => {this.store$.dispatch(new AddUser(userData))
-      });
+        switchMapTo(this.getCurrentUserAfterRefresh$(id)),
+      ).subscribe((userData: UserDto) => this.store$.dispatch(new AddUser(userData)));
 
     return checkStoreUser$;
+  }
+
+  private getCurrentUserAfterRefresh$(id: number): Observable<UserDto> {
+    return this.http.get<UserDto>(`${USER_LIST_URL}/${id}`, {});
   }
 }
